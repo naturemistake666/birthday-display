@@ -238,11 +238,11 @@ def ask_int(question, minimum, maximum):
         try:
             number = int(answer)
         except ValueError:
-            print("  Ошибка: нужно ввести целое число.")
+            print("Ошибка: нужно ввести целое число.")
             continue
 
         if number < minimum or number > maximum:
-            print(f"  Ошибка: число должно быть от {minimum} до {maximum}.")
+            print(f"Ошибка: число должно быть от {minimum} до {maximum}.")
             continue
 
         return number
@@ -260,13 +260,13 @@ def read_birth_date():
         # Проверяем, что такой день в этом месяце существует.
         max_day = days_in_month(month, year)
         while day > max_day:
-            print(f"  Ошибка: в месяце {month} {year} года только {max_day} дней.")
+            print(f"Ошибка: в месяце {month} {year} года только {max_day} дней.")
             day = ask_int("Введите день рождения заново: ", 1, max_day)
 
         # Дата рождения не может быть позже сегодняшнего дня.
         if year == today.year:
             if month > today.month or (month == today.month and day > today.day):
-                print("  Ошибка: дата рождения не может быть в будущем.\n")
+                print("Ошибка: дата рождения не может быть в будущем.")
                 continue
 
         return day, month, year
@@ -277,28 +277,20 @@ def read_birth_date():
 # ------------------------------------------------------------------
 
 def main():
-    print("=" * 52)
-    print("           Информация о дате рождения")
-    print("=" * 52)
-
     day, month, year = read_birth_date()
 
     print()
-    print("-" * 52)
-    print(f"Дата рождения:   {day:02d}.{month:02d}.{year}")
-    print(f"День недели:     {weekday_name(day, month, year)}")
+    print("Дата рождения:", f"{day:02d}.{month:02d}.{year}")
+    print("День недели:", weekday_name(day, month, year))
 
     if is_leap_year(year):
-        print("Високосный год:  да")
+        print("Високосный год: да")
     else:
-        print("Високосный год:  нет")
+        print("Високосный год: нет")
 
-    print(f"Полных лет:      {calculate_age(day, month, year)}")
-    print("-" * 52)
+    print("Полных лет:", calculate_age(day, month, year))
     print()
-
     print(format_date_as_display(day, month, year))
-    print()
 
 
 # Запускаем программу только если файл запущен напрямую.
